@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>shipping helper</title>
+</head>
+<body>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    
+    <h1>Input information</h1>
+    <form action = "{% url 'home:submit' %}" method="post">
+      <fieldset>
+        <legend>Sender</legend>
+        <p>
+          <label>Address</label>
+          <input type = "text"
+                 name = "senderAddress" />
+        </p>
+        <p>
+          <label>City</label>
+          <input type = "text"
+                 name = "senderCity" />
+        </p>
+        <p>
+          <label>State</label>
+          <input type = "text"
+                 name = "senderState" />
+        </p>
+        <p>
+          <label>Zip Code</label>
+          <input type = "text"
+                 name = "senderZipCode" />
+        </p>
+        <p>
+          <label>Country</label>
+          <input type = "text"
+                 name = "senderCountry" />
+        </p>
+
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
+        <legend>Recipient</legend>
+        <p>
+          <label>Address</label>
+          <input type = "text"
+                 name = "recipientAddress" />
+        </p>
+        <p>
+          <label>City</label>
+          <input type = "text"
+                 name = "recipientCity" />
+        </p>
+        <p>
+          <label>State</label>
+          <input type = "text"
+                 name = "recipientState" />
+        </p>
+        <p>
+          <label>Zip Code</label>
+          <input type = "text"
+                 name = "recipientZipCode" />
+        </p>
+        <p>
+          <label>Country</label>
+          <input type = "text"
+                 name = "recipientCountry" />
+        </p>
+      </fieldset>
+    </form>
+    
+    <form>
+      <fieldset>
+        <legend>Dimensions</legend>
+        <p>
+          <label>Height</label>
+          <input type = "text"
+                 name = "height" />
+        </p>
+        <p>
+          <label>Width</label>
+          <input type = "text"
+                 name = "wnameth" />
+        </p>
+        <p>
+          <label>Length</label>
+          <input type = "text"
+                 name = "length" />
+        </p>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
+        <legend>Weight</legend>
+        <p>
+          <label>Weight</label>
+          <input type = "text"
+                 name = "weight" />
+        </p>
+        <p>
+          <label>Unit</label>
+          <input type = "text"
+                 name = "unit" />
+        </p>
+      </fieldset>
+    </form>
+    <input type="submit" value="Submit">
+
+</body>
+</html>
