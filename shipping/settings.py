@@ -27,19 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 def get_env_variable(var_name):
     try:
-
+        print(STATIC_ROOT)
         return os.environ[var_name]
     except KeyError:
         error_msg = "Set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)
 
-SECRET_KEY = get_env_variable('SECRET_KEY')
-
-# The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = BASE_DIR / 'staticfiles'  #. os.path.join(BASE_DIR, 'staticfiles')
-
-# The URL to use when referring to static files (where they will be served from)
-STATIC_URL = '/static/'
+SECRET_KEY = ""#get_env_variable('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -136,12 +130,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'  #. os.path.join(BASE_DIR, 'staticfiles')
+
+# The URL to use when referring to static files (where they will be served from)
+STATIC_URL = '/static/'
 
 django_heroku.settings(locals())
