@@ -29,7 +29,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 def get_env_variable(var_name):
     try:
-
         return os.environ[var_name]
     except KeyError:
         error_msg = "Set the %s environment variable" % var_name
