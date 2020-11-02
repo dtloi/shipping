@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 from django.core.exceptions import ImproperlyConfigured
 
 import os
+import django_heroku
 load_dotenv()
 
 
@@ -143,3 +144,4 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+django_heroku.settings(locals())
