@@ -1,1 +1,1 @@
-web: gunicorn shipping.wsgi:application --log-file
+web: gunicorn shipping.wsgi --log-file
