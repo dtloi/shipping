@@ -18,5 +18,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('home.urls'), name = "index"),
-    path('admin/<str:senderZipCode>', admin.site.urls, name = "submit"),
+    path('admin', admin.site.urls, name = "submit"),
 ]

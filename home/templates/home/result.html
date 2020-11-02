@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Results</h1>
+{% for key,cour in resp.items %}
+    <h2>{{key}}</h2>
+    {% for rate in cour %}
+        {% for prices_key,prices in rate.items %}
+            <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th></th>
+                  {% for price_type,price_value in prices.items %}
+                    <th>{{price_type}}</th>
+                  {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>{{prices_key}}</td>
+                  {% for price_type,price_value in prices.items %}
+                    <td>{{price_value}}</td>
+                  {% endfor %}
+              </tr>
+            </tbody>
+            </table>
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+
+
+</body>
+</html>

@@ -1,111 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>shipping helper</title>
 </head>
 <body>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    
-    <h1>Input information</h1>
-    <form action = "{% url 'home:submit' %}" method="post">
-      <fieldset>
-        <legend>Sender</legend>
-        <p>
-          <label>Address</label>
-          <input type = "text"
-                 name = "senderAddress" />
-        </p>
-        <p>
-          <label>City</label>
-          <input type = "text"
-                 name = "senderCity" />
-        </p>
-        <p>
-          <label>State</label>
-          <input type = "text"
-                 name = "senderState" />
-        </p>
-        <p>
-          <label>Zip Code</label>
-          <input type = "text"
-                 name = "senderZipCode" />
-        </p>
-        <p>
-          <label>Country</label>
-          <input type = "text"
-                 name = "senderCountry" />
-        </p>
+    {% load crispy_forms_tags %}
+    {% if error_message %}
+        {% for key,errors in error_message.items %}
+            <div class="alert alert-danger alert-dismissible">
+                <p><strong>{{key}}:</strong></p>
+                {% for error in errors %}
+                    <p>{{error}}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
 
-      </fieldset>
+    {% block content %}
+    <form action = "{% url 'home:submit' %}" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-sm-6 mb-0 sender">
+              <h2>Sender</h2>
+              {{ form.sender_address_1|as_crispy_field }}
+              {{ form.sender_address_2|as_crispy_field }}
+              {{ form.sender_city|as_crispy_field }}
+              {{ form.sender_zip_code|as_crispy_field }}
+              <div class="form-row">
+                  <div class="form-group col-sm-6 mb-0">
+                      {{ form.sender_country|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-sm-6 mb-0">
+                      {{ form.sender_state|as_crispy_field }}
+                  </div>
+              </div>
+          </div>
+          <div class="form-group col-sm-6 mb-0">
+              <h2>Recipient</h2>
+              {{ form.recipient_address_1|as_crispy_field }}
+              {{ form.recipient_address_2|as_crispy_field }}
+              {{ form.recipient_city|as_crispy_field }}
+              {{ form.recipient_zip_code|as_crispy_field }}
+              <div class="form-row">
+                  <div class="form-group col-sm-6 mb-0">
+                      {{ form.recipient_country|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-sm-6 mb-0">
+                      {{ form.recipient_state|as_crispy_field }}
+                  </div>
+              </div>
+              {{form.recipient_resident|as_crispy_field}}
+          </div>
+
+        </div>
+        <h2>Dimensions</h2>
+        <div class="form-row">
+          <div class="form-group col-sm-4 mb-0">
+            {{ form.height|as_crispy_field }}
+          </div>
+          <div class="form-group col-sm-4 mb-0">
+            {{ form.width|as_crispy_field }}
+          </div>
+          <div class="form-group col-sm-4 mb-0">
+            {{ form.length|as_crispy_field }}
+          </div>
+        </div>
+        {{ form.weight|as_crispy_field }}
+        {{ form.unit|as_crispy_field }}
+
+      <input class="btn btn-primary" type="submit" value="Submit">
     </form>
-    <form>
-      <fieldset>
-        <legend>Recipient</legend>
-        <p>
-          <label>Address</label>
-          <input type = "text"
-                 name = "recipientAddress" />
-        </p>
-        <p>
-          <label>City</label>
-          <input type = "text"
-                 name = "recipientCity" />
-        </p>
-        <p>
-          <label>State</label>
-          <input type = "text"
-                 name = "recipientState" />
-        </p>
-        <p>
-          <label>Zip Code</label>
-          <input type = "text"
-                 name = "recipientZipCode" />
-        </p>
-        <p>
-          <label>Country</label>
-          <input type = "text"
-                 name = "recipientCountry" />
-        </p>
-      </fieldset>
-    </form>
-    
-    <form>
-      <fieldset>
-        <legend>Dimensions</legend>
-        <p>
-          <label>Height</label>
-          <input type = "text"
-                 name = "height" />
-        </p>
-        <p>
-          <label>Width</label>
-          <input type = "text"
-                 name = "wnameth" />
-        </p>
-        <p>
-          <label>Length</label>
-          <input type = "text"
-                 name = "length" />
-        </p>
-      </fieldset>
-    </form>
-    <form>
-      <fieldset>
-        <legend>Weight</legend>
-        <p>
-          <label>Weight</label>
-          <input type = "text"
-                 name = "weight" />
-        </p>
-        <p>
-          <label>Unit</label>
-          <input type = "text"
-                 name = "unit" />
-        </p>
-      </fieldset>
-    </form>
-    <input type="submit" value="Submit">
+    {% endblock %}
 
 </body>
 </html>
