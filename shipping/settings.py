@@ -15,9 +15,9 @@ from django.core.exceptions import ImproperlyConfigured
 
 import os
 import django_heroku
-import environ
-environ.Env.read_env()
- #load_dotenv()
+#import environ
+#environ.Env.read_env()
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
