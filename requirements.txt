@@ -3,3 +3,4 @@ gunicorn==20.0.4
 fedex~=2.4.1
 easypost~=5.0.0
 python-dotenv~=0.14.0
+whitenoise~=5.2.0
